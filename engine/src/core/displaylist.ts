@@ -3,8 +3,8 @@ namespace engine {
 
     export type MovieClipData = {
 
-        name: string,
-        frames: MovieClipFrameData[]
+        name : string;
+        frames : MovieClipFrameData[]
     }
 
     export type MovieClipFrameData = {
@@ -288,13 +288,13 @@ namespace engine {
 
         private static FRAME_TIME = 20;
 
-        private static TOTAL_FRAME = 10;
+        private static TOTAL_FRAME = 12;
 
         private currentFrameIndex: number;
-
+  
         private data: MovieClipData;
 
-        constructor(data: MovieClipData) {
+        constructor(data) {
             
             super();
             this.setMovieClipData(data);//先执行一次更新
@@ -311,15 +311,17 @@ namespace engine {
 
             let data = this.data;
 
-            let frameData = data.frames[this.currentFrameIndex];
-            let url = frameData.image;
+            console.log(this.currentFrameIndex);
+            this.image.src = data.frames[this.currentFrameIndex].image;
         }
 
         play() {
+
             Ticker.getInstance().register(this.ticker);
         }
 
         stop() {
+
             Ticker.getInstance().unregister(this.ticker)
         }
 

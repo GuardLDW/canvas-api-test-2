@@ -17,6 +17,7 @@ namespace engine{
             let now = Date.now();
             let deltaTime = now - lastNow;
             Ticker.getInstance().notify(deltaTime);
+            
             context2D.clearRect(0, 0, 400, 400);
             context2D.save();
             stage.draw(context2D);

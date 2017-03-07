@@ -24,6 +24,7 @@ namespace engine {
         }
 
         notify(deltaTime: number) {
+            
             for (let listener of this.listeners) {
                 listener(deltaTime);
             }

@@ -42,6 +42,40 @@ list.addEventListener("onmousemove", (e : MouseEvent) =>{
 }, this, false);
 
 
+//帧动画
+var movieData  = {
+
+    frames : [
+        {"image" : "playerIdle1.jpg"},
+        {"image" : "playerIdle1.jpg"},
+        {"image" : "playerIdle1.jpg"},
+        {"image" : "playerIdle1.jpg"},
+        {"image" : "playerIdle1.jpg"},
+        {"image" : "playerIdle1.jpg"},
+        {"image" : "playerIdle2.jpg"},
+        {"image" : "playerIdle2.jpg"},
+        {"image" : "playerIdle2.jpg"},
+        {"image" : "playerIdle2.jpg"},
+        {"image" : "playerIdle2.jpg"},
+        {"image" : "playerIdle2.jpg"}
+
+    ]
+
+}
+
+var player = new engine.MovieClip(movieData);
+player.image.src = "player1.jpg";
+player.image.width = 100;
+player.image.height = 100;
+player.x = 300;
+
+
+
+
+
+
+
+
 //图片
 var avater = new engine.Bitmap();
 avater.image.src = "avater.jpg";
@@ -59,6 +93,8 @@ avater.image.onload = () => {
 
     stage.addChild(list);
     stage.addChild(panel);
+
+    stage.addChild(player);
 
         
 }
