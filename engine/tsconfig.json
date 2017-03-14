@@ -8,6 +8,7 @@
 		"src/core/math.ts",
 		"src/core/event.ts",
 		"src/core/ticker.ts",
+		"src/core/tween.ts",
 		"src/core/displaylist.ts",
 		"src/platforms/browser/driver.ts"
 	]

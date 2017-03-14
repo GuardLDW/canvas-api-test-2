@@ -43,7 +43,9 @@ list.addEventListener("onmousemove", (e : MouseEvent) =>{
 
 
 //帧动画
-var movieData  = {
+var idleData : engine.MovieClipData = {
+
+    name : "111",
 
     frames : [
         {"image" : "playerIdle1.jpg"},
@@ -63,15 +65,122 @@ var movieData  = {
 
 }
 
-var player = new engine.MovieClip(movieData);
+var moveData : engine.MovieClipData = {
+
+    name : "111",
+
+    frames : [
+        {"image" : "playerMove1.jpg"},
+        {"image" : "playerMove1.jpg"},
+        {"image" : "playerMove1.jpg"},
+        {"image" : "playerMove1.jpg"},
+        {"image" : "playerMove1.jpg"},
+        {"image" : "playerMove1.jpg"},
+        {"image" : "playerMove2.jpg"},
+        {"image" : "playerMove2.jpg"},
+        {"image" : "playerMove2.jpg"},
+        {"image" : "playerMove2.jpg"},
+        {"image" : "playerMove2.jpg"},
+        {"image" : "playerMove2.jpg"}
+
+    ]
+
+}
+
+var player = new engine.MovieClip(idleData);
 player.image.src = "player1.jpg";
 player.image.width = 100;
 player.image.height = 100;
 player.x = 300;
 
+stage.addEventListener("onclick", (e : MouseEvent) =>{
+
+    if(!player.isMove){
+
+        player.isMove = true;
+        player.setMovieClipData(moveData);
+        
+        this.moveTimer = setInterval(function(){
+                
+        if(Math.abs(player.x - e.offsetX) < player.moveSpeed && Math.abs(player.x - e.offsetX) < player.moveSpeed){
+            
+            player.x = e.offsetX;
+            player.y = e.offsetY;
+            player.isMove = false;
+            player.setMovieClipData(idleData);
+            clearInterval(this.moveTimer);
+        }
+                
+
+        if(player.x >= e.offsetX){
+                    
+            player.x = player.x - player.moveSpeed;
+                
+        }else{
+                    
+            player.x = player.x + player.moveSpeed;
+        }
+                
+        if(player.y >= e.offsetY){
+                    
+            player.y = player.y - player.moveSpeed;
+                
+        }else{
+                    
+            player.y = player.y + player.moveSpeed;
+                
+        }
+
+    }, 50);
 
 
+   }else{
+       
+       clearInterval(this.moveTimer);
+       //player.setMovieClipData(idleData);
 
+       this.moveTimer = setInterval(function(){
+                
+        if(Math.abs(player.x - e.offsetX) < player.moveSpeed && Math.abs(player.x - e.offsetX) < player.moveSpeed){
+            
+            player.x = e.offsetX;
+            player.y = e.offsetY;
+            player.isMove = false;
+            player.setMovieClipData(idleData);
+            clearInterval(this.moveTimer);
+        }
+                
+
+        if(player.x >= e.offsetX){
+                    
+            player.x = player.x - player.moveSpeed;
+                
+        }else{
+                    
+            player.x = player.x + player.moveSpeed;
+        }
+                
+        if(player.y >= e.offsetY){
+                    
+            player.y = player.y - player.moveSpeed;
+                
+        }else if(player.y < e.offsetY){
+                    
+            player.y = player.y + player.moveSpeed;
+                
+        }
+
+    }, 100);
+
+    player.isMove = true;
+       
+    }
+
+    //engine.Tween.moveTo(player, e.offsetX, e.offsetY);
+    //engine.Tween.removeTween(player);
+    //player.setMovieClipData();
+
+}, this, false);
 
 
 
@@ -86,18 +195,24 @@ avater.image.onload = () => {
 
 
 
-    list.addChild(avater);
-    list.addChild(button);
+    stage.addChild(avater);
+    //list.addChild(button);
         
-    panel.addChild(word2);
+    //panel.addChild(word2);
 
-    stage.addChild(list);
-    stage.addChild(panel);
+    //list.addChild(player);
 
     stage.addChild(player);
+    //stage.addChild(panel);
+
+    
 
         
 }
+
+
+//vertexShaderSourceCode : 顶点着色器，决定形状  模型-决定数据
+//fragmentShaderSourceCode ： 片元着色器，决定颜色   材质-决定数据
 
 
 

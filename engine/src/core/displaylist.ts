@@ -31,6 +31,8 @@ namespace engine {
         globalAlpha : number = 1;//全局                             
         parent : DisplayObject = null;
 
+        moveSpeed : number = 0;
+
         touchEnable : boolean = false;
 
         eventArray : TheEvent[] = [];
@@ -293,10 +295,13 @@ namespace engine {
         private currentFrameIndex: number;
   
         private data: MovieClipData;
+        
+        isMove : boolean = false;
 
-        constructor(data) {
+        constructor(data : MovieClipData) {
             
             super();
+            this.moveSpeed = 2;
             this.setMovieClipData(data);//先执行一次更新
             this.play();
         }
