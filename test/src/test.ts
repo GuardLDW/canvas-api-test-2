@@ -93,95 +93,22 @@ player.image.width = 100;
 player.image.height = 100;
 player.x = 300;
 
+var playerTween = new engine.Tween(player, moveData, idleData);
+
 stage.addEventListener("onclick", (e : MouseEvent) =>{
 
     if(!player.isMove){
 
-        player.isMove = true;
-        player.setMovieClipData(moveData);
+        playerTween.moveTo(e.offsetX, e.offsetY);
         
-        this.moveTimer = setInterval(function(){
-                
-        if(Math.abs(player.x - e.offsetX) < player.moveSpeed && Math.abs(player.x - e.offsetX) < player.moveSpeed){
-            
-            player.x = e.offsetX;
-            player.y = e.offsetY;
-            player.isMove = false;
-            player.setMovieClipData(idleData);
-            clearInterval(this.moveTimer);
-        }
-                
-
-        if(player.x >= e.offsetX){
-                    
-            player.x = player.x - player.moveSpeed;
-                
-        }else{
-                    
-            player.x = player.x + player.moveSpeed;
-        }
-                
-        if(player.y >= e.offsetY){
-                    
-            player.y = player.y - player.moveSpeed;
-                
-        }else{
-                    
-            player.y = player.y + player.moveSpeed;
-                
-        }
-
-    }, 50);
-
-
    }else{
        
-       clearInterval(this.moveTimer);
-       //player.setMovieClipData(idleData);
-
-       this.moveTimer = setInterval(function(){
-                
-        if(Math.abs(player.x - e.offsetX) < player.moveSpeed && Math.abs(player.x - e.offsetX) < player.moveSpeed){
-            
-            player.x = e.offsetX;
-            player.y = e.offsetY;
-            player.isMove = false;
-            player.setMovieClipData(idleData);
-            clearInterval(this.moveTimer);
-        }
-                
-
-        if(player.x >= e.offsetX){
-                    
-            player.x = player.x - player.moveSpeed;
-                
-        }else{
-                    
-            player.x = player.x + player.moveSpeed;
-        }
-                
-        if(player.y >= e.offsetY){
-                    
-            player.y = player.y - player.moveSpeed;
-                
-        }else if(player.y < e.offsetY){
-                    
-            player.y = player.y + player.moveSpeed;
-                
-        }
-
-    }, 100);
-
-    player.isMove = true;
+       playerTween.removeTween();
+       playerTween.moveTo(e.offsetX, e.offsetY);
        
     }
 
-    //engine.Tween.moveTo(player, e.offsetX, e.offsetY);
-    //engine.Tween.removeTween(player);
-    //player.setMovieClipData();
-
 }, this, false);
-
 
 
 
