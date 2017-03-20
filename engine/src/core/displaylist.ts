@@ -289,7 +289,7 @@ namespace engine {
         constructor(data : MovieClipData) {
             
             super();
-            this.moveSpeed = 2;
+            this.moveSpeed = 4;
             this.setMovieClipData(data);//先执行一次更新
             this.play();
         }
@@ -304,7 +304,7 @@ namespace engine {
 
             let data = this.data;
 
-            console.log(this.currentFrameIndex);
+            //console.log(this.currentFrameIndex);
             this.image.src = data.frames[this.currentFrameIndex].image;
         }
 

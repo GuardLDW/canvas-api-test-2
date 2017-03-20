@@ -28,28 +28,30 @@ namespace engine {
             
             //开启移动线程
             this.moveTimer = setInterval(function(){
-                
+
+            
                 if(Math.abs(object.x - targetX) <= object.moveSpeed && Math.abs(object.y - targetY) <= object.moveSpeed){
 
-                    clearInterval(this.moveTimer);
+                    console.log("OK")
                     object.x = targetX;
                     object.y = targetY;
                     object.setMovieClipData(idleData);
                     object.isMove = false;
+                    clearInterval(this.moveTimer);
 
                 }
                 
 
-                if(object.x >= targetX){
+                if(object.x > targetX){
                     
                     object.x = object.x - object.moveSpeed;
                 
-                }else{
+                }else if(object.x < targetX){
                     
                     object.x = object.x + object.moveSpeed;
                 }
                 
-                if(object.y >= targetY){
+                if(object.y > targetY){
                     
                     object.y = object.y - object.moveSpeed;
                 
@@ -59,7 +61,7 @@ namespace engine {
                 
                 }
             
-            }, 100);
+            }, 50);
 
         }
 
